@@ -4,19 +4,13 @@ import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.widget.LinearLayout
-import com.ankotest.api.ServiceFactory
 import com.ankotest.api.viewmodel.ServiceViewModel
-import com.ankotest.components.ComponentFactory
+import com.ankotest.components.ViewComponentFactory
 import com.ankotest.response.Component
 import com.ankotest.utils.ActionHandler
 import com.ankotest.utils.PerformAction
 import com.ankotest.utils.mount
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
 
@@ -24,7 +18,7 @@ class MainActivity : AppCompatActivity() {
             .get(ServiceViewModel::class.java) }
 
     private val performAction: PerformAction = {
-        startActivity(ActionHandler.getIntentForAction(it))
+        startActivity(ActionHandler.getIntentForAction(this, it))
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,11 +32,13 @@ class MainActivity : AppCompatActivity() {
 
             initUi(it)
         })
+
+
     }
 
     private fun initUi(components: List<Component>) {
         components.forEach {
-            container.mount(ComponentFactory.getViewComponent(it, performAction))
+            container.mount(ViewComponentFactory.getViewComponent(it, performAction))
         }
     }
 }

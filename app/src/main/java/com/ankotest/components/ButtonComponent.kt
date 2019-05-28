@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.LinearLayout
 import com.ankotest.response.Component
 import com.ankotest.utils.PerformAction
+import com.ankotest.utils.loadBackground
 import org.jetbrains.anko.*
 
 /**
@@ -19,6 +20,10 @@ class ButtonComponent(
         button(component.text) {
             component.style.backgroundColor?.let {
                 backgroundColor = Color.parseColor(it)
+            }
+
+            component.style.backgroundResource?.let {
+                loadBackground(it)
             }
 
             component.style.textColor?.let {

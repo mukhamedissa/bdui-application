@@ -10,7 +10,7 @@ import retrofit2.converter.gson.GsonConverterFactory
  */
 object ServiceFactory {
 
-    private const val ENDPOINT = "https://e04b1e67.ngrok.io"
+    private const val ENDPOINT = "https://a0a8e6c9.ngrok.io"
 
     val client = OkHttpClient.Builder()
             .addInterceptor {

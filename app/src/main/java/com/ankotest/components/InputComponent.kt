@@ -5,6 +5,7 @@ import android.graphics.Color
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import com.ankotest.response.Component
+import com.ankotest.utils.loadBackground
 import org.jetbrains.anko.*
 
 /**
@@ -23,6 +24,10 @@ class InputComponent(private val component: Component): AnkoComponent<Context> {
 
             component.style.backgroundColor?.let {
                 backgroundColor = Color.parseColor(it)
+            }
+
+            component.style.backgroundResource?.let {
+                loadBackground(it)
             }
 
             layoutParams = LinearLayout.LayoutParams(component.params.getWidth(),

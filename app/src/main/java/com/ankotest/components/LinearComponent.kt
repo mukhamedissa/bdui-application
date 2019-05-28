@@ -37,7 +37,7 @@ class LinearComponent(
 
         component.children?.let {
             for (child in it) {
-                layout.mount(ComponentFactory.getViewComponent(child, performAction))
+                layout.mount(ViewComponentFactory.getViewComponent(child, performAction))
             }
         }
 
